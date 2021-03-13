@@ -11,6 +11,12 @@ The webapp is primarily written in [Vue](https://vuejs.org/) using [Vuetify](htt
 It is preferable to run the webapp on a linux system (Fedora/Ubuntu).
 
 ### Install node and npm
+> Fedora installation
+
+```shell
+ sudo dnf install nodejs
+```
+
 > Ubuntu installation 
 
 ```shell
@@ -18,11 +24,6 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt install nodejs
 node --version
 npm --version
-```
-> Fedora installation
-
-```shell
- sudo dnf install nodejs
 ```
 
 ### Install yarn and vue
@@ -36,7 +37,7 @@ yarn global add @vue/cli
 Authentication for the frontend is provided through [Auth0](https://auth0.com/). Login to Auth0 using your Google/GitHub account. 
 
 ### Application authentication
-To integrate Auth0 with the web app, the app must be registered with Auth0.
+[Register App as a Single-page webapp with Auth0](https://auth0.com/docs/applications/set-up-an-application/register-single-page-app) to integrate the web app with Auth0.
 
   1. Go to [`Dashboard > Applications`](https://manage.auth0.com/#/applications) and click Create Application.
 
