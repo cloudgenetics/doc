@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cloudgenetics doc</title>
+  <link rel="icon" href="_media/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Notes from technical books">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/themes/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'cloudgenetics doc',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      search: 'auto',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      themeColor: '#7c3fc3',
+      repo: 'https://github.com/cloudgenetics/doc',
+      plugins: [
+        function (hook) {
+          hook.beforeEach(function (content) {
+            return content.replace(/\$\$([\s\S]*?)\$\$/g,
+               function(x){ return x.replace(/[_]/g,'[subscript]')}
+            )
+          })
+          hook.beforeEach(function (content) {
+            return content.replace(/\$([\s\S]*?)\$/g,
+               function(x){ return x.replace('_','[subscript]')}
+            )
+          })
+          hook.afterEach(function(html, next) {
+            html = html.replace(/\$\$([\s\S]*?)\$\$/g,
+               function(x){ return x.replace(/(\[subscript\])/g,'_') }
+            )
+            html = html.replace(/\$([\s\S]*?)\$/g,
+               function(x){ return x.replace(/(\[subscript\])/g,'_')}
+            )
+            next(html)
+          })
+        }
+      ]
+    }
+  </script>
+  <!-- CDN files for docsify-katex -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/docsify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/plugins/search.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/plugins/zoom-image.min.js"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script>
+  <!-- offline mode -->
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
+</body>
+</html>
