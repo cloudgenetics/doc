@@ -9,7 +9,7 @@ The api server is primarily written in [Go](https://golang.org/) using [Gin Web 
 
 It is preferable to run the backend api server on a linux system (Fedora/Ubuntu).
 
-### Install node and npm
+### Install Go
 
 > Fedora installation
 
@@ -25,8 +25,7 @@ go env GOPATH
 
 Run the following instruction as `root` or `sudo`
 ```shell
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
-sudo export PATH=$PATH:/usr/local/go/bin
+sudo at install golang-go gccgo-go
 go version
 mkdir -p $HOME/go/src
 echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
