@@ -54,12 +54,13 @@ Authentication for the frontend is provided through [Auth0](https://auth0.com/).
 ## Get code and run webapp
   1. Clone the webapp from github: `cd $HOME && git clone https://github.com/cloudgenetics/webapp.git`
   2. Install dependencies: `cd webapp && yarn install`
-  3. Update the file `auth_config.json` with the domain and clientid from step #4 in the previous section. Set `audience` as `https://localhost:4000` this is the ServerURL from where the backend service will be run:
+  3. Update the file `auth_config.json` with the domain and clientid from step #4 in the previous section. Set `audience` as the unique id from the API: (`https://api.cloudgenetics.com`) and `ServerUrl` as `https://localhost:4000` this is the ServerURL from where the backend service will be run:
   ```json
   {
-    "domain": "kks32.us.auth0.com",
-    "clientId": "5DtiTEV0juj2VxGMVsyzERHbJ4TTNuMl",
-    "audience": "https://localhost:4000"
+    "domain": "user.us.auth0.com",
+    "clientId": "clientidofapp",
+    "audience": "server-unique-id",
+    "serverUrl": "server:port"
   }
   ```
   4. Compile code and serve: `yarn serve`. This should start serving the cloudgenetics webapp on `http://localhost:8080`. Ensure this port and your auth0 configuration of callback URLs match.
