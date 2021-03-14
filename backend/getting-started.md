@@ -25,7 +25,7 @@ go env GOPATH
 
 Run the following instruction as `root` or `sudo`
 ```shell
-sudo apt install golang-go gccgo-go
+sudo apt install golang-go
 go version
 mkdir -p $HOME/go/src
 echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
