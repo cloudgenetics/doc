@@ -93,7 +93,7 @@ We will create a distribution on AWS cloudfront to serve the static S3 files ove
 
 ## Configure Route53 for a custom domain name
 
-- In Route 53, on the hosted domain, create a new `A-record` of the subdomain `dev-app` and set it to the cloudfront alias `<uri>.cloudfront.net` address you obtained from the previous step. 
+- In Route 53, on the hosted domain choose your domainname and create a new `A-record` of the subdomain `dev-app` and set it to the cloudfront alias `<uri>.cloudfront.net` address you obtained from the previous step. 
 
 ![route53 alias](aws/53/00-a-record-app.png)
 
