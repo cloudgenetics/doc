@@ -1,6 +1,6 @@
 # Deploy Frontend to AWS
 
-> Note: All AWS services must be in the same region to avoid any issues. We assume that you have a domain name registered and managed by AWS.
+> Note: All AWS services must be in the same region to avoid any issues. We assume that you have a domain name registered and managed by AWS. We'll be deploying the VUE frontend with HTTPS served from a custom domain name.
 
 ## Upload files to S3
 We will serve the static VUE Frontend files from S3.
@@ -89,3 +89,12 @@ We will create a distribution on AWS cloudfront to serve the static S3 files ove
 - Enter `index.html` as the root object.
 
 ![cname-ssl](aws/cloudfront/02-cname-ssl-root.png)
+
+
+## Configure Route53 for a custom domain name
+
+- In Route 53, on the hosted domain, create a new `A-record` of the subdomain `dev-app` and set it to the cloudfront alias `<uri>.cloudfront.net` address you obtained from the previous step. 
+
+![route53 alias](aws/53/00-a-record-app.png)
+
+- You should be able to visit the custom subdomain on HTTPS and that will serve the frontend: [https://dev-app.domainname.com](https://dev-app.domainname.com).
