@@ -1,11 +1,35 @@
 # Deploy Go backend on AWS
 > Note: We assume all AWS services are in the same region, to avoid any potential issues. You own a domain name managed by AWS. The backend Go server will be deployed on Elastic BeanStalk with SSL / HTTP and a custom domain name. 
 
+## Create a S3 bucket to manage datasets
+
+A new S3 bucket will hold all datasets. Create an S3 bucket `dev-s3upload` with block all public access. Apply the following CORS policy in the permissions tab. The AllowedOrigin should be the frontend URL.
+
+```json
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "GET",
+            "HEAD",
+            "PUT",
+            "POST"
+        ],
+        "AllowedOrigins": [
+            "https://dev-app.cloudgenetics.com"
+        ],
+        "ExposeHeaders": []
+    }
+]
+```
+
 ### Install EBS CLI 
 
 To install Elastic beanstalk CLI
 
-```
+```shell
 pip install awsebcli
 ```
 
@@ -134,7 +158,7 @@ aws-elasticbeanstalk-ec2-role`.
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::s3presigned-uploader"
+                "arn:aws:s3:::dev-s3upload"
             ]
         },
         {
@@ -145,7 +169,7 @@ aws-elasticbeanstalk-ec2-role`.
                 "s3:DeleteObject"
             ],
             "Resource": [
-                "arn:aws:s3:::s3presigned-uploader/*"
+                "arn:aws:s3:::dev-s3upload/*"
             ]
         }
     ]
