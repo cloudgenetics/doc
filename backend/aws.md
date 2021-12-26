@@ -117,3 +117,37 @@ Optionally, you may add an EC2 Key-pair to the Elastic Beankstalk application to
 ![keypair](aws/ec2-keypair/00-key-pair.png)
 
 - Once updated you can SSH to the Elastic Beanstalk environment using `eb ssh`. Make sure the key is in `.ssh/` folder and `.elasticbeanstalk/config.yml` has the keyname specified to the one created in this step.
+
+
+## Configure IAM role to access S3
+
+Create a new [IAM policy](https://console.aws.amazon.com/iamv2/home#/policies) to provide access to the IAM Role `	
+aws-elasticbeanstalk-ec2-role`. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::s3presigned-uploader"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::s3presigned-uploader/*"
+            ]
+        }
+    ]
+}
+```
