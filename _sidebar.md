@@ -6,3 +6,5 @@
 * Backend setup
   * [Getting started](backend/getting-started.md)
   * [Deploy to AWS](backend/aws.md)
+* Database
+  * [AWS RDS PostgreSQL](database/aws-rds.md)
